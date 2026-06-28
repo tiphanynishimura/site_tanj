@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TANJ Electronics - Componentes e Robótica</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Sidebar Retrátil -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="brand-container">
+                <img src="img/logo.png" alt="Logo TANJ" class="sidebar-logo">
+                <h3 class="brand-text">TANJ</h3>
+            </div>
+            <button id="toggle-btn" class="toggle-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link-btn" data-section="home"><i class="fas fa-building"></i> <span class="link-text">Institucional</span></a></li>
+            
+            <li class="has-submenu">
+                <a href="#" id="menu-catalogo-btn"><i class="fas fa-microchip"></i> <span class="link-text">Catálogo</span></a>
+                <ul id="catalogo-submenu" class="submenu">
+                    <li><a href="#" class="nav-link-btn" data-section="eletronica">Componentes Eletrônicos</a></li>
+                    <li><a href="#" class="nav-link-btn" data-section="robotica">Robótica Educacional</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link-btn" data-section="carrinho">
+                    <i class="fas fa-shopping-cart"></i> 
+                    <span class="link-text">Meu Carrinho <span id="cart-badge" class="badge">0</span></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content">
+        
+        <!-- SEÇÃO HOME / INSTITUCIONAL -->
+        <section id="home" class="content-section">
+            <div class="about-us-container">
+                <div class="about-text">
+                    <h2>Quem Somos</h2>
+                    <p>Nascemos da necessidade de transformar a maneira como estudantes, hobistas e engenheiros adquirem materiais. A TANJ Electronics não é apenas uma fornecedora, mas uma parceira estratégica que valida, sugere e otimiza as escolhas técnicas do seu projeto, reduzindo riscos e prejuízos operacionais.</p>
+                    
+                    <h2 class="mt-20">A Essência TANJ</h2>
+                    <p>O nosso nome carrega o DNA da nossa fundação. <strong>TANJ</strong> é a abreviação dos nomes dos nossos criadores: <strong>T</strong> de Tiphany, <strong>A</strong> de Aline, <strong>N</strong> de Naywan e <strong>J</strong> de Jhuan[cite: 1]. Quatro visões distintas da engenharia trabalhando em sintonia para entregar uma plataforma robusta, ágil e focada na solução.</p>
+                </div>
+            </div>
+
+            <div class="corporate-info">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                    <h2>Missão</h2>
+                    <p>Facilitar e otimizar o desenvolvimento de projetos tecnológicos, fornecendo componentes eletrônicos com excelência aliados a um suporte técnico inteligente[cite: 1]. Nosso objetivo é garantir praticidade e otimizar o tempo de escolha de materiais para composição de projetos eletrônicos para estudantes, hobistas, desenvolvedores e engenheiros[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-eye"></i></div>
+                    <h2>Visão</h2>
+                    <p>Tornar-se a plataforma online de referência regional/local no fornecimento de componentes eletrônicos, sendo reconhecida pela inovação no suporte automatizado e pela capacidade de impulsionar a criação e o sucesso dos projetos tecnológicos dos nossos clientes[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-gem"></i></div>
+                    <h2>Valores</h2>
+                    <ul class="custom-list">
+                        <li><strong>Inovação Tecnológica:</strong> Busca constante por soluções inteligentes[cite: 1].</li>
+                        <li><strong>Confiabilidade:</strong> Compromisso em oferecer produtos de qualidade[cite: 1].</li>
+                        <li><strong>Praticidade e Agilidade:</strong> Foco em processos simplificados e eficientes[cite: 1].</li>
+                        <li><strong>Foco na Solução:</strong> Dedicação em entender a necessidade técnica do usuário[cite: 1].</li>
+                        <li><strong>Acessibilidade:</strong> Disponibilizar um portfólio completo de forma intuitiva[cite: 1].</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="diferencial-section mt-40">
+                <h2>O Nosso Grande Diferencial</h2>
+                <p>Esqueça as horas perdidas caçando especificações em manuais ou o medo de comprar o componente errado e queimar o seu circuito. A TANJ não é apenas uma prateleira de peças, nós te ajudamos a projetar com uma consultoria técnica automatizada[cite: 1].</p>
+                
+                <div class="tangerino-intro">
+                    <img src="img/logo.png" alt="Tangerino" class="tangerino-mascot">
+                    <div>
+                        <h3>Conheça o Tangerino 🍊</h3>
+                        <p>O seu consultor técnico de Inteligência Artificial exclusivo da TANJ. Com ele, a sua compra é garantida:</p>
+                        <ul class="custom-list mt-10">
+                            <li><strong>Fale ou Anexe:</strong> Digite os requisitos do seu sistema ou simplesmente anexe o arquivo PDF do seu projeto.</li>
+                            <li><strong>Análise Inteligente:</strong> O Tangerino fará a leitura da sua ideia e entenderá a sua necessidade técnica.</li>
+                            <li><strong>Lista Perfeita:</strong> Ele vai gerar automaticamente o seu carrinho de compras, recomendando apenas peças compatíveis e que já <strong>temos no nosso estoque</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="founders-section mt-40">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">Nossa Equipe</h2>
+                <div class="founders-showcase">
+                    <div class="founder-item"><img src="img/aline.jpg" alt="Aline"><span>Aline</span></div>
+                    <div class="founder-item"><img src="img/jhuan.jpg" alt="Jhuan"><span>Jhuan</span></div>
+                    <div class="founder-item"><img src="img/naywan.jpg" alt="Naywan"><span>Naywan</span></div>
+                    <div class="founder-item"><img src="img/tiphany.jpg" alt="Tiphany"><span>Tiphany</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO ELETRÔNICA (Giro Rápido) -->
+        <section id="eletronica" class="content-section" style="display: none;">
+            <header class="section-header">
+                <h2>Componentes Eletrônicos</h2>
+                <p>Itens de giro rápido para o coração do seu circuito.</p>
+            </header>
+            <div class="products-grid">
+                <div class="product-card" data-id="1" data-name="Arduino Uno SMD + Cabo" data-price="60.39">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/arduino.jpg" alt="Arduino">
+                    <h3>Arduino Uno SMD + Cabo</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Placa microcontroladora de código aberto.</p><p><strong>Specs:</strong> ATmega328P (SMD), 5V, 14 I/O digitais, 6 entradas analógicas, CH340.</p></div>
+                    <p class="price">R$ 60,39</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="2" data-name="Módulo ESP-WROOM-32" data-price="34.19">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/esp32.jpg" alt="ESP32">
+                    <h3>Módulo ESP-WROOM-32</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Módulo Wi-Fi e Bluetooth para IoT.</p><p><strong>Specs:</strong> Dual-core, 3.3V, Wi-Fi 802.11 b/g/n, Bluetooth v4.2 BR/EDR e BLE.</p></div>
+                    <p class="price">R$ 34,19</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="3" data-name="Protoboard (830 pontos)" data-price="16.00">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/proto.jpg" alt="Protoboard">
+                    <h3>Protoboard (830 pontos)</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Placa de ensaio para prototipagem sem solda.</p><p><strong>Specs:</strong> 830 furos, 2 barramentos de alimentação laterais.</p></div>
+                    <p class="price">R$ 16,00</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="4" data-name="Jumper Macho x Macho 20cm (40 uni)" data-price="3.50">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/jumper_mm.jpg" alt="Jumper MM">
+                    <h3>Jumper Macho x Macho (20cm)</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Cabos de conexão.</p><p><strong>Specs:</strong> 20cm, 40 vias destacáveis, pinos macho nas duas pontas.</p></div>
+                    <p class="price">R$ 3,50</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="5" data-name="Jumper Macho x Fêmea 20cm (40 uni)" data-price="3.50">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/jumper_mf.jpg" alt="Jumper MF">
+                    <h3>Jumper Macho x Fêmea (20cm)</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Cabos de conexão.</p><p><strong>Specs:</strong> 20cm, 40 vias, macho-fêmea.</p></div>
+                    <p class="price">R$ 3,50</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="6" data-name="Jumper Fêmea x Fêmea 20cm (40 uni)" data-price="3.50">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/jumper_ff.jpg" alt="Jumper FF">
+                    <h3>Jumper Fêmea x Fêmea (20cm)</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Cabos de conexão.</p><p><strong>Specs:</strong> 20cm, 40 vias, fêmea-fêmea.</p></div>
+                    <p class="price">R$ 3,50</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="7" data-name="Display LCD 16x2 com I2C" data-price="20.00">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/display.jpg" alt="Display">
+                    <h3>Display LCD 16x2 com I2C</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Tela de cristal líquido.</p><p><strong>Specs:</strong> 16 colunas, 2 linhas, comunicação serial I2C (apenas 4 pinos).</p></div>
+                    <p class="price">R$ 20,00</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="8" data-name="Resistores (Lote)" data-price="1.65">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/resistor.jpg" alt="Resistores">
+                    <h3>Resistores (Lote)</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Componente para limitar corrente.</p><p><strong>Specs:</strong> Filme de carbono, 1/4W, tolerância 5%.</p></div>
+                    <p class="price">R$ 1,65</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="9" data-name="Capacitor Eletrolítico" data-price="1.00">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/cap_ele.jpg" alt="Cap. Eletrolitico">
+                    <h3>Capacitor Eletrolítico</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Armazenador de carga polarizado.</p><p><strong>Specs:</strong> Diversas capacitâncias e tensões (selecione no carrinho).</p></div>
+                    <p class="price">R$ 1,00</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="10" data-name="Capacitores (Cerâmico)" data-price="1.00">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/cap_cer.jpg" alt="Cap. Ceramico">
+                    <h3>Capacitor Cerâmico</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Armazenador de carga não-polarizado.</p><p><strong>Specs:</strong> Ideal para desacoplamento de alta frequência.</p></div>
+                    <p class="price">R$ 1,00</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="11" data-name="Botão TÁCTIL 12x12x8,5mm" data-price="2.80">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/botao.jpg" alt="Botao">
+                    <h3>Botão Táctil 12x12x8,5mm</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Chave momentânea.</p><p><strong>Specs:</strong> 4 pinos, contato normalmente aberto (NA).</p></div>
+                    <p class="price">R$ 2,80</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="12" data-name="Sensor Ultrassônico HY-SRF04" data-price="13.50">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/sensor.jpg" alt="Sensor">
+                    <h3>Sensor Ultrassônico HY-SRF04</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Sensor de distância por pulso sonoro.</p><p><strong>Specs:</strong> Alcance de 2cm a 400cm, precisão de 3mm.</p></div>
+                    <p class="price">R$ 13,50</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="13" data-name="Ponte H Dupla L298N" data-price="6.40">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/ponteh.jpg" alt="Ponte H">
+                    <h3>Ponte H Dupla L298N</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Driver controlador de motores.</p><p><strong>Specs:</strong> Controla 2 motores DC ou 1 de passo, tensão até 35V, 2A por canal.</p></div>
+                    <p class="price">R$ 6,40</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="14" data-name="Motor DC 3-6V c/ Caixa de Redução" data-price="8.60">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/motor.jpg" alt="Motor">
+                    <h3>Motor DC 3-6V com Caixa</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Motor amarelo padrão para robótica.</p><p><strong>Specs:</strong> Eixo duplo, redução de 1:48, 3V a 6V.</p></div>
+                    <p class="price">R$ 8,60</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="15" data-name="LED Difuso 5 mm" data-price="1.10">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/led.jpg" alt="LED">
+                    <h3>LED Difuso 5 mm</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Diodo emissor de luz.</p><p><strong>Specs:</strong> 5mm, lente leitosa (difusa), corrente máx 20mA.</p></div>
+                    <p class="price">R$ 1,10</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO ROBÓTICA (Alto Valor Agregado) -->
+        <section id="robotica" class="content-section" style="display: none;">
+            <header class="section-header">
+                <h2>Robótica Educacional</h2>
+                <p>Kits e módulos de alto valor agregado para projetos avançados.</p>
+            </header>
+            <div class="products-grid">
+                <div class="product-card" data-id="16" data-name="Kit Robô Seguidor de Linha" data-price="310.67">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/kit_seguidor.jpg" alt="Kit Seguidor">
+                    <h3>Kit Robô Seguidor de Linha</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Kit estrutural de montagem e controle de direção autônoma.</p><p><strong>Specs:</strong> Contém Chassi, Motores, Sensores TCRT5000, Ponte H e Bateria[cite: 1].</p></div>
+                    <p class="price">R$ 310,67</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="17" data-name="Kit Braço Robótico" data-price="376.26">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/kit_braco.jpg" alt="Kit Braço">
+                    <h3>Kit Braço Robótico</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Kit manipulador robótico de mesa.</p><p><strong>Specs:</strong> Contém Chassi, Servo Motores, Shield V5.0 e Arduino[cite: 1].</p></div>
+                    <p class="price">R$ 376,26</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="18" data-name="Kit Carrinho a Energia Solar" data-price="25.97">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/kit_solar.jpg" alt="Kit Solar">
+                    <h3>Kit Carrinho Energia Solar</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Protótipo veicular movido à luz solar.</p><p><strong>Specs:</strong> Mini painel solar e chassi de montagem rápida[cite: 1].</p></div>
+                    <p class="price">R$ 25,97</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="19" data-name="Kit Arduino Maker" data-price="128.26">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/kit_maker.jpg" alt="Kit Maker">
+                    <h3>Kit Arduino Maker</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Kit iniciante de programação e IoT.</p><p><strong>Specs:</strong> Placa de desenvolvimento e diversos sensores e atuadores[cite: 1].</p></div>
+                    <p class="price">R$ 128,26</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="20" data-name="Kit Placa CDR Makey" data-price="210.00">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/kit_makey.jpg" alt="Kit Makey">
+                    <h3>Kit Placa CDR Makey</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Placa de invenções interativas.</p><p><strong>Specs:</strong> Transforma qualquer objeto condutivo em um teclado para PC[cite: 1].</p></div>
+                    <p class="price">R$ 210,00</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="21" data-name="Kit Sensores de Temperatura" data-price="252.00">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/kit_temp.jpg" alt="Kit Temp">
+                    <h3>Kit Sensores Temperatura</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Laboratório meteorológico compacto.</p><p><strong>Specs:</strong> NodeMCU ESP12, DHT11, BMP180, e MQ135[cite: 1].</p></div>
+                    <p class="price">R$ 252,00</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+                <div class="product-card" data-id="22" data-name="Kit Automação Residencial com Arduino" data-price="280.00">
+                    <button class="details-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    <img src="img/kit_auto.jpg" alt="Kit Auto">
+                    <h3>Kit Automação Residencial</h3>
+                    <div class="product-details"><p><strong>O que é:</strong> Projeto de casa inteligente (Domótica).</p><p><strong>Specs:</strong> Relés para controle de carga AC, receptor IR e sensores de luminosidade[cite: 1].</p></div>
+                    <p class="price">R$ 280,00</p>
+                    <div class="quantity-selector"><button class="qty-btn minus">-</button><span class="qty-value">1</span><button class="qty-btn plus">+</button></div>
+                    <button class="add-to-cart-btn">Adicionar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DETALHES DO PRODUTO (Nova Aba Dedicada) -->
+        <section id="produto-detalhe" class="content-section" style="display: none;">
+            <button class="voltar-btn" id="btn-voltar">
+                <i class="fas fa-arrow-left"></i> Voltar para o Catálogo
+            </button>
+            
+            <div class="detalhe-container">
+                <div class="detalhe-esquerda">
+                    <h2 id="detalhe-nome">Nome do Produto</h2>
+                    <img id="detalhe-img" src="" alt="Produto">
+                </div>
+                <div class="detalhe-direita">
+                    <div class="detalhe-info">
+                        <h3>O que é:</h3>
+                        <p id="detalhe-oque">Descrição do produto aqui.</p>
+                        <h3 class="mt-20">Especificações Técnicas:</h3>
+                        <p id="detalhe-specs">Especificações aqui.</p>
+                    </div>
+                    <div class="detalhe-compra">
+                        <p class="detalhe-preco" id="detalhe-preco">R$ 0,00</p>
+                        <div class="quantity-selector" style="margin: 0 auto 20px auto;">
+                            <button class="qty-btn minus" id="detalhe-btn-minus">-</button>
+                            <span class="qty-value" id="detalhe-qtd">1</span>
+                            <button class="qty-btn plus" id="detalhe-btn-plus">+</button>
+                        </div>
+                        <button class="add-to-cart-btn grande" id="detalhe-add-btn">
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO CARRINHO -->
+        <section id="carrinho" class="content-section" style="display: none;">
+            <header class="section-header">
+                <h2>Meu Carrinho</h2>
+                <p>Revise seus itens e aproveite nosso Fast-Track via PIX.</p>
+            </header>
+            <div id="cart-container" class="ecommerce-cart">
+                <div class="cart-items-list" id="cart-items-list">
+                    <div id="empty-cart-msg" class="empty-state">
+                        <i class="fas fa-box-open"></i>
+                        <p>Seu carrinho está vazio.</p>
+                    </div>
+                </div>
+                <div class="cart-summary-box">
+                    <h3>Resumo do Pedido</h3>
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Frete (Fast-Track)</span>
+                        <span>A calcular</span>
+                    </div>
+                    <hr>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span id="summary-total">R$ 0,00</span>
+                    </div>
+                    <button class="btn-checkout" id="btn-finalizar-compra">Finalizar Compra via PIX</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ASSISTENTE FLUTUANTE: TANGERINO -->
+    <button id="chatbot-fab" class="chatbot-fab">
+        <img src="img/logo.png" alt="Tangerino">
+    </button>
+    <div id="chatbot-window" class="chatbot-window">
+        <div class="chat-header">
+            <div class="chat-title">
+                <img src="img/logo.png" alt="Tangerino" class="chat-avatar">
+                <div>
+                    <strong>Tangerino</strong>
+                    <span class="chat-status">Consultor Online I.A.</span>
+                </div>
+            </div>
+            <button id="close-chat" class="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chat-history" class="chat-history">
+            <div class="message bot-msg">
+                Olá! Sou o Tangerino 🍊. Anexe o PDF do seu projeto ou me diga os requisitos, e eu monto a lista ideal para você!
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <label for="chat-file-upload" class="chat-attach-btn"><i class="fas fa-paperclip"></i></label>
+            <input type="file" id="chat-file-upload" style="display: none;" accept=".pdf,image/*">
+            <input type="text" id="chat-input" placeholder="Digite sua dúvida...">
+            <button id="chat-send-btn" class="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
