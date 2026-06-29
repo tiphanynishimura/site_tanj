@@ -127,7 +127,7 @@ main { margin-left: 260px; padding: 50px; width: 100%; transition: margin-left 0
 /* TANGERINO CHATBOT */
 .chatbot-fab { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: white; border-radius: 50%; border: 3px solid var(--primary); cursor: pointer; z-index: 1000; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 .chatbot-fab img { width: 40px; height: 40px; object-fit: contain; }
-.chatbot-window { position: fixed; bottom: 110px; right: 30px; width: 360px; height: 500px; background: #fff; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); display: none; flex-direction: column; z-index: 1001; border: 1px solid var(--light-gray); }
+.chatbot-window { position: fixed; bottom: 110px; right: 30px; width: 620px; height: 760px; background: #fff; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); display: none; flex-direction: column; z-index: 1001; border: 1px solid var(--light-gray); }
 .chat-header { background: var(--dark); padding: 15px; display: flex; justify-content: space-between; align-items: center; }
 .chat-title { display: flex; align-items: center; gap: 12px; }
 .chat-avatar { width: 40px; height: 40px; background: white; border-radius: 50%; padding: 2px; }
@@ -140,5 +140,7 @@ main { margin-left: 260px; padding: 50px; width: 100%; transition: margin-left 0
 .user-msg { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
 .chat-input-area { padding: 15px; display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--light-gray); }
 .chat-attach-btn { color: var(--gray); cursor: pointer; font-size: 1.2rem; }
+#chat-input { flex: 1; border: 1px solid var(--light-gray); padding: 10px; border-radius: 20px; outline: none; }
+.chat-send-btn { background: var(--primary); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }hat-input { flex: 1; border: 1px solid var(--light-gray); padding: 10px; border-radius: 20px; outline: none; }
 #chat-input { flex: 1; border: 1px solid var(--light-gray); padding: 10px; border-radius: 20px; outline: none; }
 .chat-send-btn { background: var(--primary); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
