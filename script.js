@@ -216,12 +216,17 @@ document.getElementById('btn-finalizar-compra').addEventListener('click', () => 
 // ==========================================
 // 4. CHATBOT TANGERINO
 // ==========================================
+const N8N_WEBHOOK_URL = 'https://alibarbo17.app.n8n.cloud/webhook/0f638c78-f907-4147-af65-de14cf832120/chat';
+
 const chatFab = document.getElementById('chatbot-fab');
 const chatWindow = document.getElementById('chatbot-window');
 const chatHistory = document.getElementById('chat-history');
 const chatInput = document.getElementById('chat-input');
 const chatSendBtn = document.getElementById('chat-send-btn');
 const fileUpload = document.getElementById('chat-file-upload');
+
+// Gerar um ID de sessão único para manter o histórico da conversa no n8n
+const sessionId = 'session_' + Math.random().toString(36).substr(2, 9);
 
 chatFab.addEventListener('click', () => chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex');
 document.getElementById('close-chat').addEventListener('click', () => chatWindow.style.display = 'none');
@@ -237,7 +242,8 @@ function addMessage(text, sender) {
 chatSendBtn.addEventListener('click', enviarMensagem);
 chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') enviarMensagem(); });
 
-function enviarMensagem() {
+// Função assíncrona para lidar com o envio e a resposta do n8n
+async function enviarMensagem() {
     const texto = chatInput.value.trim();
     const arquivo = fileUpload.files[0];
 
@@ -247,12 +253,59 @@ function enviarMensagem() {
         addMessage(texto, 'user');
         chatInput.value = '';
     }
+    
     if (arquivo) {
         addMessage(`📎 Arquivo: ${arquivo.name}`, 'user');
         fileUpload.value = ''; 
+        // Nota: Envio de arquivos exige multipart/form-data. 
+        // Esta implementação foca no envio do texto para o nó de chat padrão do n8n.
     }
 
-    setTimeout(() => {
-        addMessage("Entendido! Já estou processando seu projeto para sugerir os componentes exatos do catálogo.", 'bot');
-    }, 1200);
+    // Cria uma mensagem visual de "Digitando..."
+    const indicadorDigitando = document.createElement('div');
+    indicadorDigitando.className = 'message bot-msg';
+    indicadorDigitando.textContent = 'Digitando...';
+    chatHistory.appendChild(indicadorDigitando);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+
+    try {
+        // Faz a chamada HTTP POST para o n8n
+        const response = await fetch(N8N_WEBHOOK_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chatInput: texto,
+                sessionId: sessionId // Importante para o bot lembrar do contexto da conversa
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na resposta do servidor');
+        }
+
+        // Primeiro pegamos a resposta do JSON de forma segura
+        const data = await response.json();
+
+        // Agora que temos os dados e nenhum erro ocorreu, removemos o indicador de digitando
+        if (chatHistory.contains(indicadorDigitando)) {
+            chatHistory.removeChild(indicadorDigitando);
+        }
+
+        // Como você está usando o AI Agent do n8n, a resposta SEMPRE vem na propriedade 'output'
+        const botResposta = data.output; 
+
+        addMessage(botResposta, 'bot');
+
+    } catch (error) {
+        console.error('Erro ao conectar com o n8n:', error);
+        
+        // Se deu erro, removemos o indicador aqui (caso ele ainda exista na tela)
+        if (chatHistory.contains(indicadorDigitando)) {
+            chatHistory.removeChild(indicadorDigitando);
+        }
+        
+        addMessage('Desculpe, estou com problemas para me conectar ao servidor agora.', 'bot');
+    }
 }
