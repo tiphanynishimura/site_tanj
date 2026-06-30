@@ -327,9 +327,7 @@ removeFileBtn.addEventListener('click', function() {
     filePreviewContainer.style.display = 'none';
 });
 
-<<<<<<< HEAD
-// MODIFICADA: Agora trata o texto e renderiza HTML de forma limpa
-=======
+
 //function addMessage(text, sender) {
  //   const msgDiv = document.createElement('div');
  //   msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
@@ -337,37 +335,28 @@ removeFileBtn.addEventListener('click', function() {
  //   chatHistory.appendChild(msgDiv);
  //   chatHistory.scrollTop = chatHistory.scrollHeight;
 //}
+//Eu ja to é puta - _-
 
->>>>>>> f55fe97 (Diagramacao de texto do chatbot (Nao tinha funcionado a alteracao na automacao))
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
     
     if (sender === 'bot') {
-<<<<<<< HEAD
-        // 1. Transforma os asteriscos do bloco em tópicos com quebra de linha
+        // 1. Substitui os asteriscos soltos (*) que a IA gera por quebras de linha (<br>) com marcadores
         let textoFormatado = text.replace(/\*\s+/g, '<br>• ');
         
-        // 2. Transforma também os hifens longos das listas coladas em novas quebras
+        // 2. Substitui os hifens longos ( — ) por quebras de linha para isolar os componentes
         textoFormatado = textoFormatado.replace(/ — /g, '<br>— ');
         
-        // 3. Limpa qualquer quebra extra que tenha ficado grudada no início do balão
+        // 3. Remove uma quebra sobressalente no início caso a string comece com asterisco
         if (textoFormatado.startsWith('<br>')) {
             textoFormatado = textoFormatado.replace('<br>', '');
         }
         
+        // Usamos innerHTML para o navegador interpretar os <br> gerados acima
         msgDiv.innerHTML = textoFormatado;
     } else {
-        // Se for o usuário, mantém o comportamento padrão de texto puro
-=======
-        let textoFormatado = text.replace(/\*\s+/g, '<br>• ');
-        textoFormatado = textoFormatado.replace(/ — /g, '<br>— ');
-        if (textoFormatado.startsWith('<br>')) {
-            textoFormatado = textoFormatado.replace('<br>', '');
-        }
-        msgDiv.innerHTML = textoFormatado;
-    } else {
->>>>>>> f55fe97 (Diagramacao de texto do chatbot (Nao tinha funcionado a alteracao na automacao))
+        // Para as mensagens do usuário, mantemos textContent por segurança
         msgDiv.textContent = text;
     }
     
