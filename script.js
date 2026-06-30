@@ -320,7 +320,7 @@ removeFileBtn.addEventListener('click', function() {
 
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
-    msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
+    msgDiv.className = message ${sender === 'user' ? 'user-msg' : 'bot-msg'};
     msgDiv.textContent = text;
     chatHistory.appendChild(msgDiv);
     chatHistory.scrollTop = chatHistory.scrollHeight;
@@ -335,17 +335,17 @@ async function enviarMensagem() {
 
     if (!texto && !arquivo) return;
 
+    // 1. Exibe as mensagens na interface do usuário primeiro
     if (texto) {
         addMessage(texto, 'user');
         chatInput.value = '';
     }
     
     if (arquivo) {
-        addMessage(`📎 Arquivo anexado: ${arquivo.name}`, 'user');
-        fileUpload.value = ''; 
-        filePreviewContainer.style.display = 'none';
+        addMessage(📎 Arquivo anexado: ${arquivo.name}, 'user');
     }
 
+    // 2. Adiciona o indicador visual de carregamento
     const indicadorDigitando = document.createElement('div');
     indicadorDigitando.className = 'message bot-msg';
     indicadorDigitando.textContent = 'Analisando o projeto...';
@@ -353,13 +353,20 @@ async function enviarMensagem() {
     chatHistory.scrollTop = chatHistory.scrollHeight;
 
     try {
-        // Uso de FormData para empacotar o arquivo físico e enviar para o n8n
+        // 3. Monta o FormData com o arquivo binário ainda intacto na memória
         const formData = new FormData();
         formData.append('sessionId', sessionId);
         
         if (texto) formData.append('chatInput', texto);
         if (arquivo) formData.append('file', arquivo); 
 
+        // 4. Agora que o FormData já coletou o arquivo, limpa os campos HTML com segurança
+        if (arquivo) {
+            fileUpload.value = ''; 
+            filePreviewContainer.style.display = 'none';
+        }
+
+        // 5. Realiza a requisição HTTP para o webhook do n8n
         const response = await fetch(N8N_WEBHOOK_URL, {
             method: 'POST',
             body: formData
