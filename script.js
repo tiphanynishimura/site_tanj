@@ -328,15 +328,25 @@ removeFileBtn.addEventListener('click', function() {
 });
 
 
+//function addMessage(text, sender) {
+ //   const msgDiv = document.createElement('div');
+ ///   msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
+ //   console.log(text);
+ //   msgDiv.textContent = text;
+ //  chatHistory.appendChild(msgDiv);
+ //  chatHistory.scrollTop = chatHistory.scrollHeight;
+//}
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
-    console.log(text);
-    msgDiv.textContent = text;
-   chatHistory.appendChild(msgDiv);
-   chatHistory.scrollTop = chatHistory.scrollHeight;
-}
 
+    text = text.replace(/\\n/g, "\n");
+
+    msgDiv.textContent = text;
+
+    chatHistory.appendChild(msgDiv);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+}
 
 
 chatSendBtn.addEventListener('click', enviarMensagem);
