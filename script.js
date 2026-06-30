@@ -339,14 +339,16 @@ function escapeHTML(text) {
 
 function formatChatText(text) {
     let normalized = String(text ?? '')
+        .replace(/\\r\\n/g, '\n')
+        .replace(/\\n/g, '\n')
         .replace(/\r\n/g, '\n')
         .replace(/\n/g, '\n')
         .replace(/\r/g, '\n')
         .trim();
 
     normalized = normalized
-        .replace(/(^|\s)(\d+)\.\s+/g, (match, before, num) => `${before}<br><strong>${num}.</strong> `)
-        .replace(/(^|\s)-\s+/g, (match, before) => `${before}<br>• `);
+        .replace(/\s+(\d+)\.\s+/g, '\n$1. ')
+        .replace(/(^|\n)-\s+/g, '\n- ');
 
     if (!normalized) return '';
 
