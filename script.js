@@ -449,7 +449,13 @@ async function enviarMensagem() {
             chatHistory.removeChild(indicadorDigitando);
         }
 
-        const botResposta = data.output; 
+        let botResposta = data.output;
+        if (Array.isArray(botResposta)) {
+            botResposta = botResposta.join('\n');
+        } else if (botResposta && typeof botResposta === 'object') {
+            botResposta = botResposta.text ?? JSON.stringify(botResposta, null, 2);
+        }
+
         addMessage(botResposta, 'bot');
 
     } catch (error) {
