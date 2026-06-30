@@ -328,71 +328,31 @@ removeFileBtn.addEventListener('click', function() {
 });
 
 
-function escapeHTML(text) {
-    return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
-
-function formatChatText(text) {
-    let normalized = String(text ?? '')
-        .replace(/\\r\\n/g, '\n')
-        .replace(/\\n/g, '\n')
-        .replace(/\r\n/g, '\n')
-        .replace(/\n/g, '\n')
-        .replace(/\r/g, '\n')
-        .trim();
-
-    normalized = normalized
-        .replace(/\s+(-)\s+/g, '\n- ')
-        .replace(/([\.!?])\s+(\d+)\.\s+/g, '$1\n$2. ')
-        .replace(/\n{2,}/g, '\n\n');
-
-    if (!normalized) return '';
-
-    return normalized
-        .split(/\n\s*\n+/)
-        .filter(Boolean)
-        .map((block) => {
-            const lines = block.split('\n').map(line => line.trim()).filter(Boolean);
-
-            if (lines.every(line => /^[-*]\s+/.test(line))) {
-                const items = lines.map(line => `<li>${escapeHTML(line.replace(/^[-*]\s+/, ''))}</li>`).join('');
-                return `<ul>${items}</ul>`;
-            }
-
-            const formattedLines = lines.map((line) => {
-                if (/^#{1,3}\s+/.test(line)) {
-                    const level = Math.min(line.match(/^#+/)[0].length, 3);
-                    const content = escapeHTML(line.replace(/^#{1,3}\s+/, ''));
-                    return `<h${level}>${content}</h${level}>`;
-                }
-
-                if (/^[-*]\s+/.test(line)) {
-                    return `<li>${escapeHTML(line.replace(/^[-*]\s+/, ''))}</li>`;
-                }
-
-                return escapeHTML(line).replace(/\s{2,}/g, ' ');
-            });
-
-            if (formattedLines.every(line => line.startsWith('<li>'))) {
-                return `<ul>${formattedLines.join('')}</ul>`;
-            }
-
-            return `<p>${formattedLines.join('<br>')}</p>`;
-        })
-        .join('');
-}
+//function addMessage(text, sender) {
+ //   const msgDiv = document.createElement('div');
+ //   msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
+  //  msgDiv.textContent = text;
+ //   chatHistory.appendChild(msgDiv);
+ //   chatHistory.scrollTop = chatHistory.scrollHeight;
+//}
+//Eu ja to é puta - _-
 
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
     
     if (sender === 'bot') {
-        msgDiv.innerHTML = formatChatText(text);
+        let textoFormatado = text;
+
+        textoFormatado = textoFormatado.replace(/\\n/g, '<br>');
+
+        textoFormatado = textoFormatado.replace(/\s+—\s+/g, '<br>— ');
+
+        if (textoFormatado.startsWith('<br>')) {
+            textoFormatado = textoFormatado.replace(/^<br\s*\/?>+/, '');
+        }
+        
+        msgDiv.innerHTML = textoFormatado;
     } else {
         msgDiv.textContent = text;
     }
@@ -449,13 +409,7 @@ async function enviarMensagem() {
             chatHistory.removeChild(indicadorDigitando);
         }
 
-        let botResposta = data.output;
-        if (Array.isArray(botResposta)) {
-            botResposta = botResposta.join('\n');
-        } else if (botResposta && typeof botResposta === 'object') {
-            botResposta = botResposta.text ?? JSON.stringify(botResposta, null, 2);
-        }
-
+        const botResposta = data.output; 
         addMessage(botResposta, 'bot');
 
     } catch (error) {
