@@ -385,17 +385,7 @@ function addMessage(text, sender) {
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
     
     if (sender === 'bot') {
-        let textoFormatado = text;
-
-        textoFormatado = textoFormatado.replace(/\\n/g, '<br>');
-
-        textoFormatado = textoFormatado.replace(/\s+—\s+/g, '<br>— ');
-
-        if (textoFormatado.startsWith('<br>')) {
-            textoFormatado = textoFormatado.replace(/^<br\s*\/?>+/, '');
-        }
-        
-        msgDiv.innerHTML = textoFormatado;
+        msgDiv.innerHTML = formatChatText(text);
     } else {
         msgDiv.textContent = text;
     }
