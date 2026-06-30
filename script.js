@@ -327,12 +327,24 @@ removeFileBtn.addEventListener('click', function() {
     filePreviewContainer.style.display = 'none';
 });
 
+<<<<<<< HEAD
 // MODIFICADA: Agora trata o texto e renderiza HTML de forma limpa
+=======
+//function addMessage(text, sender) {
+ //   const msgDiv = document.createElement('div');
+ //   msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
+  //  msgDiv.textContent = text;
+ //   chatHistory.appendChild(msgDiv);
+ //   chatHistory.scrollTop = chatHistory.scrollHeight;
+//}
+
+>>>>>>> f55fe97 (Diagramacao de texto do chatbot (Nao tinha funcionado a alteracao na automacao))
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
     
     if (sender === 'bot') {
+<<<<<<< HEAD
         // 1. Transforma os asteriscos do bloco em tópicos com quebra de linha
         let textoFormatado = text.replace(/\*\s+/g, '<br>• ');
         
@@ -347,6 +359,15 @@ function addMessage(text, sender) {
         msgDiv.innerHTML = textoFormatado;
     } else {
         // Se for o usuário, mantém o comportamento padrão de texto puro
+=======
+        let textoFormatado = text.replace(/\*\s+/g, '<br>• ');
+        textoFormatado = textoFormatado.replace(/ — /g, '<br>— ');
+        if (textoFormatado.startsWith('<br>')) {
+            textoFormatado = textoFormatado.replace('<br>', '');
+        }
+        msgDiv.innerHTML = textoFormatado;
+    } else {
+>>>>>>> f55fe97 (Diagramacao de texto do chatbot (Nao tinha funcionado a alteracao na automacao))
         msgDiv.textContent = text;
     }
     
