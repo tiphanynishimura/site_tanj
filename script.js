@@ -342,21 +342,20 @@ function addMessage(text, sender) {
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
     
     if (sender === 'bot') {
-        // 1. Substitui os asteriscos soltos (*) que a IA gera por quebras de linha (<br>) com marcadores
-        let textoFormatado = text.replace(/\*\s+/g, '<br>• ');
+        let textoFormatated = text;
         
-        // 2. Substitui os hifens longos ( — ) por quebras de linha para isolar os componentes
-        textoFormatado = textoFormatado.replace(/ — /g, '<br>— ');
-        
-        // 3. Remove uma quebra sobressalente no início caso a string comece com asterisco
-        if (textoFormatado.startsWith('<br>')) {
-            textoFormatado = textoFormatado.replace('<br>', '');
+        textoFormatated = textoFormatated.replace(/\s+-\s+/g, '<br>• ');
+
+        textoFormatated = textoFormatated.replace(/\s+—\s+/g, '<br>— ');
+
+        textoFormatated = textoFormatated.replace(/\*\s+/g, '<br>• ');
+
+        if (textoFormatated.startsWith('<br>')) {
+            textoFormatated = textoFormatated.replace('<br>', '');
         }
         
-        // Usamos innerHTML para o navegador interpretar os <br> gerados acima
-        msgDiv.innerHTML = textoFormatado;
+        msgDiv.innerHTML = textoFormatated;
     } else {
-        // Para as mensagens do usuário, mantemos textContent por segurança
         msgDiv.textContent = text;
     }
     
