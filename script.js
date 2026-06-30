@@ -226,7 +226,7 @@ document.getElementById('btn-calcular-frete').addEventListener('click', async ()
         const qtdParaFrete = totalItens > 0 ? totalItens : 1;
 
         // Agora mandamos o CEP e a QUANTIDADE (&qtd=) para o servidor!
-        const response = await fetch(`http://localhost:3000/frete?cep=${cepInput}&qtd=${qtdParaFrete}`);
+        const response = await fetch(`https://site-tanj.onrender.com/frete?cep=${cepInput}&qtd=${qtdParaFrete}`);
         const data = await response.json();
 
         if (data.erro || !data.length) {
