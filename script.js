@@ -342,19 +342,17 @@ function addMessage(text, sender) {
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
     
     if (sender === 'bot') {
-        let textoFormatated = text;
-        
-        textoFormatated = textoFormatated.replace(/\s+-\s+/g, '<br>• ');
+        let textoFormatado = text;
 
-        textoFormatated = textoFormatated.replace(/\s+—\s+/g, '<br>— ');
+        textoFormatado = textoFormatado.replace(/\\n/g, '<br>');
 
-        textoFormatated = textoFormatated.replace(/\*\s+/g, '<br>• ');
+        textoFormatado = textoFormatado.replace(/\s+—\s+/g, '<br>— ');
 
-        if (textoFormatated.startsWith('<br>')) {
-            textoFormatated = textoFormatated.replace('<br>', '');
+        if (textoFormatado.startsWith('<br>')) {
+            textoFormatado = textoFormatado.replace(/^<br\s*\/?>+/, '');
         }
         
-        msgDiv.innerHTML = textoFormatated;
+        msgDiv.innerHTML = textoFormatado;
     } else {
         msgDiv.textContent = text;
     }
