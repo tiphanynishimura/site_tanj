@@ -52,6 +52,8 @@ app.get('/frete', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('🚀 Servidor backend da TANJ rodando na porta 3000!');
+// Agora o servidor aceita a porta que a nuvem escolher (process.env.PORT) ou usa a 3000 no seu PC
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`🚀 Servidor backend da TANJ rodando na porta ${PORT}!`);
 });
