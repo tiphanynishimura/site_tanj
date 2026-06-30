@@ -328,38 +328,16 @@ removeFileBtn.addEventListener('click', function() {
 });
 
 
-//function addMessage(text, sender) {
- //   const msgDiv = document.createElement('div');
- //   msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
-  //  msgDiv.textContent = text;
- //   chatHistory.appendChild(msgDiv);
- //   chatHistory.scrollTop = chatHistory.scrollHeight;
-//}
-//Eu ja to é puta - _-
-
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
-    
-    if (sender === 'bot') {
-        let textoFormatado = text;
-
-        textoFormatado = textoFormatado.replace(/\\n/g, '<br>');
-
-        textoFormatado = textoFormatado.replace(/\s+—\s+/g, '<br>— ');
-
-        if (textoFormatado.startsWith('<br>')) {
-            textoFormatado = textoFormatado.replace(/^<br\s*\/?>+/, '');
-        }
-        
-        msgDiv.innerHTML = textoFormatado;
-    } else {
-        msgDiv.textContent = text;
-    }
-    
-    chatHistory.appendChild(msgDiv);
-    chatHistory.scrollTop = chatHistory.scrollHeight;
+    console.log(text);
+    msgDiv.textContent = text;
+   chatHistory.appendChild(msgDiv);
+   chatHistory.scrollTop = chatHistory.scrollHeight;
 }
+
+
 
 chatSendBtn.addEventListener('click', enviarMensagem);
 chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') enviarMensagem(); });
