@@ -347,8 +347,9 @@ function formatChatText(text) {
         .trim();
 
     normalized = normalized
-        .replace(/\s+(\d+)\.\s+/g, '\n$1. ')
-        .replace(/(^|\n)-\s+/g, '\n- ');
+        .replace(/\s+(-)\s+/g, '\n- ')
+        .replace(/([\.!?])\s+(\d+)\.\s+/g, '$1\n$2. ')
+        .replace(/\n{2,}/g, '\n\n');
 
     if (!normalized) return '';
 
