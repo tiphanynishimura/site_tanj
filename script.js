@@ -327,10 +327,29 @@ removeFileBtn.addEventListener('click', function() {
     filePreviewContainer.style.display = 'none';
 });
 
+// MODIFICADA: Agora trata o texto e renderiza HTML de forma limpa
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
-    msgDiv.textContent = text;
+    
+    if (sender === 'bot') {
+        // 1. Transforma os asteriscos do bloco em tópicos com quebra de linha
+        let textoFormatado = text.replace(/\*\s+/g, '<br>• ');
+        
+        // 2. Transforma também os hifens longos das listas coladas em novas quebras
+        textoFormatado = textoFormatado.replace(/ — /g, '<br>— ');
+        
+        // 3. Limpa qualquer quebra extra que tenha ficado grudada no início do balão
+        if (textoFormatado.startsWith('<br>')) {
+            textoFormatado = textoFormatado.replace('<br>', '');
+        }
+        
+        msgDiv.innerHTML = textoFormatado;
+    } else {
+        // Se for o usuário, mantém o comportamento padrão de texto puro
+        msgDiv.textContent = text;
+    }
+    
     chatHistory.appendChild(msgDiv);
     chatHistory.scrollTop = chatHistory.scrollHeight;
 }
