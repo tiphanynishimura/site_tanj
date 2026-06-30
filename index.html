@@ -379,13 +379,22 @@
                 </div>
                 <div class="cart-summary-box">
                     <h3>Resumo do Pedido</h3>
+                    
+                    <!-- BLOCO DE CÁLCULO DE FRETE -->
+                    <div class="cep-calculator" style="margin-bottom: 25px; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid var(--light-gray);">
+                        <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 10px;">Calcular Frete e Prazo:</p>
+                        <input type="text" id="cep-input" placeholder="Digite seu CEP (Somente números)" style="width: 100%; padding: 10px; border: 1px solid var(--light-gray); border-radius: 8px; margin-bottom: 10px;">
+                        <button id="btn-calcular-frete" style="width: 100%; padding: 10px; background: var(--dark); color: white; border: none; border-radius: 8px; cursor: pointer;">Calcular Frete</button>
+                        <p id="cep-resultado" style="font-size: 0.85rem; margin-top: 10px; color: var(--gray);"></p>
+                    </div>
+
                     <div class="summary-line">
                         <span>Subtotal</span>
                         <span id="summary-subtotal">R$ 0,00</span>
                     </div>
                     <div class="summary-line">
-                        <span>Frete (Fast-Track)</span>
-                        <span>A calcular</span>
+                        <span>Frete</span>
+                        <span id="summary-frete">A calcular</span>
                     </div>
                     <hr>
                     <div class="summary-total">
@@ -418,6 +427,19 @@
                 Olá, camarada! 👋 Sou o Tangerino, seu assistente técnica virtual🍊. Anexe o PDF do seu projeto ou me diga os requisitos, e eu monto a lista ideal para você!
             </div>
         </div>
+
+        <!-- CONTAINER DO PREVIEW DE ARQUIVO -->
+        <div id="file-preview-container" class="file-preview-container" style="display: none;">
+            <div class="file-preview-card">
+                <div class="file-icon"><i class="fas fa-file-pdf"></i></div>
+                <div class="file-info">
+                    <span class="file-type">ARQUIVO</span>
+                    <span id="file-preview-name" class="file-name">arquivo.pdf</span>
+                </div>
+                <button id="remove-file-btn" class="remove-file-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
         <div class="chat-input-area">
             <label for="chat-file-upload" class="chat-attach-btn"><i class="fas fa-paperclip"></i></label>
             <input type="file" id="chat-file-upload" style="display: none;" accept=".pdf,image/*">

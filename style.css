@@ -141,6 +141,74 @@ main { margin-left: 260px; padding: 50px; width: 100%; transition: margin-left 0
 .chat-input-area { padding: 15px; display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--light-gray); }
 .chat-attach-btn { color: var(--gray); cursor: pointer; font-size: 1.2rem; }
 #chat-input { flex: 1; border: 1px solid var(--light-gray); padding: 10px; border-radius: 20px; outline: none; }
-.chat-send-btn { background: var(--primary); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }hat-input { flex: 1; border: 1px solid var(--light-gray); padding: 10px; border-radius: 20px; outline: none; }
-#chat-input { flex: 1; border: 1px solid var(--light-gray); padding: 10px; border-radius: 20px; outline: none; }
 .chat-send-btn { background: var(--primary); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+
+/* ==========================================
+   PREVIEW DE ARQUIVO (ESTILO GEMINI)
+   ========================================== */
+.file-preview-container {
+    padding: 10px 15px 0 15px;
+    background: #fff;
+    border-top: 1px solid var(--light-gray);
+}
+
+.file-preview-card {
+    display: flex;
+    align-items: center;
+    background: #202124;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 16px;
+    gap: 15px;
+    width: fit-content;
+    max-width: 90%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.file-icon {
+    font-size: 1.5rem;
+    color: #9AA0A6;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.file-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #9AA0A6;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.file-name {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    font-family: 'Inter', sans-serif;
+}
+
+.remove-file-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #9AA0A6;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.2s;
+}
+
+.remove-file-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
