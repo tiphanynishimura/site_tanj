@@ -340,9 +340,11 @@ function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
 
+    // Converte os "\n" literais em quebras de linha reais
     text = text.replace(/\\n/g, "\n");
 
-    msgDiv.textContent = text;
+    // Renderiza Markdown
+    msgDiv.innerHTML = marked.parse(text);
 
     chatHistory.appendChild(msgDiv);
     chatHistory.scrollTop = chatHistory.scrollHeight;
