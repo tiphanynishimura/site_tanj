@@ -328,14 +328,57 @@ removeFileBtn.addEventListener('click', function() {
 });
 
 
-//function addMessage(text, sender) {
- //   const msgDiv = document.createElement('div');
- //   msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
-  //  msgDiv.textContent = text;
- //   chatHistory.appendChild(msgDiv);
- //   chatHistory.scrollTop = chatHistory.scrollHeight;
-//}
-//Eu ja to é puta - _-
+function escapeHTML(text) {
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function formatChatText(text) {
+    const normalized = String(text ?? '')
+        .replace(/\\r\\n/g, '\n')
+        .replace(/\\n/g, '\n')
+        .replace(/\r/g, '\n')
+        .trim();
+
+    if (!normalized) return '';
+
+    return normalized
+        .split(/\n\s*\n+/)
+        .filter(Boolean)
+        .map((block) => {
+            const lines = block.split('\n').map(line => line.trim()).filter(Boolean);
+
+            if (lines.every(line => /^[-*]\s+/.test(line))) {
+                const items = lines.map(line => `<li>${escapeHTML(line.replace(/^[-*]\s+/, ''))}</li>`).join('');
+                return `<ul>${items}</ul>`;
+            }
+
+            const formattedLines = lines.map((line) => {
+                if (/^#{1,3}\s+/.test(line)) {
+                    const level = Math.min(line.match(/^#+/)[0].length, 3);
+                    const content = escapeHTML(line.replace(/^#{1,3}\s+/, ''));
+                    return `<h${level}>${content}</h${level}>`;
+                }
+
+                if (/^[-*]\s+/.test(line)) {
+                    return `<li>${escapeHTML(line.replace(/^[-*]\s+/, ''))}</li>`;
+                }
+
+                return escapeHTML(line).replace(/\s{2,}/g, ' ');
+            });
+
+            if (formattedLines.every(line => line.startsWith('<li>'))) {
+                return `<ul>${formattedLines.join('')}</ul>`;
+            }
+
+            return `<p>${formattedLines.join('<br>')}</p>`;
+        })
+        .join('');
+}
 
 function addMessage(text, sender) {
     const msgDiv = document.createElement('div');
