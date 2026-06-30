@@ -164,7 +164,6 @@ function atualizarCarrinhoUI() {
     
     document.getElementById('summary-subtotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
     
-    // Soma o frete ao total do pedido se ele já foi calculado
     const totalComFrete = total + valorFrete;
     document.getElementById('summary-total').textContent = `R$ ${totalComFrete.toFixed(2).replace('.', ',')}`;
 }
@@ -219,13 +218,10 @@ document.getElementById('btn-calcular-frete').addEventListener('click', async ()
     resultadoMsg.style.color = "var(--gray)";
 
     try {
-        // Conta quantas peças no total existem no carrinho
         const totalItens = carrinho.reduce((acc, item) => acc + item.quantity, 0);
-        
-        // Se o carrinho estiver vazio, simula pelo menos 1 item para não dar erro na API
         const qtdParaFrete = totalItens > 0 ? totalItens : 1;
 
-        // Agora mandamos o CEP e a QUANTIDADE (&qtd=) para o servidor!
+        // Servidor Oficial do Render
         const response = await fetch(`https://site-tanj.onrender.com/frete?cep=${cepInput}&qtd=${qtdParaFrete}`);
         const data = await response.json();
 
@@ -235,18 +231,15 @@ document.getElementById('btn-calcular-frete').addEventListener('click', async ()
             return;
         }
 
-        // Pega todas as transportadoras válidas (filter)
         const transportadorasValidas = data.filter(t => !t.error);
 
         if (transportadorasValidas.length > 0) {
-            
-            // Constrói um menu de seleção (dropdown)
             let selectHTML = `<select id="seletor-frete" style="width: 100%; padding: 8px; margin-top: 10px; border-radius: 8px; border: 1px solid var(--light-gray); outline: none; cursor: pointer;">`;
             selectHTML += `<option value="0">Selecione uma opção de frete...</option>`;
 
+            // Renderiza o Nome da Empresa + Nome do Serviço (Correios SEDEX, Jadlog .Package, etc)
             transportadorasValidas.forEach(t => {
                 let precoFormatado = parseFloat(t.price).toFixed(2).replace('.', ',');
-                // Adicionamos o t.company.name antes do t.name!
                 selectHTML += `<option value="${t.price}" data-nome="${t.company.name} ${t.name}" data-prazo="${t.delivery_time}">
                     ${t.company.name} ${t.name} - R$ ${precoFormatado} (${t.delivery_time} dias úteis)
                 </option>`;
@@ -257,13 +250,11 @@ document.getElementById('btn-calcular-frete').addEventListener('click', async ()
             resultadoMsg.innerHTML = selectHTML;
             resultadoMsg.style.color = "var(--dark)";
             
-            // Zera o frete até o cliente escolher
             valorFrete = 0;
             document.getElementById('summary-frete').textContent = `Aguardando seleção`;
             document.getElementById('summary-frete').style.color = "var(--gray)";
             atualizarCarrinhoUI();
 
-            // Escuta a seleção do cliente
             document.getElementById('seletor-frete').addEventListener('change', function() {
                 if (this.value !== "0") {
                     valorFrete = parseFloat(this.value);
@@ -295,7 +286,7 @@ document.getElementById('btn-calcular-frete').addEventListener('click', async ()
 });
 
 // ==========================================
-// 5. CHATBOT TANGERINO COM PREVIEW DE ARQUIVO
+// 5. CHATBOT TANGERINO COM PREVIEW E ENVIO DE ARQUIVO (FormData)
 // ==========================================
 const N8N_WEBHOOK_URL = 'https://alibarbo17.app.n8n.cloud/webhook/0f638c78-f907-4147-af65-de14cf832120/chat';
 
@@ -350,27 +341,28 @@ async function enviarMensagem() {
     }
     
     if (arquivo) {
-        addMessage(`📎 Arquivo: ${arquivo.name}`, 'user');
+        addMessage(`📎 Arquivo anexado: ${arquivo.name}`, 'user');
         fileUpload.value = ''; 
         filePreviewContainer.style.display = 'none';
     }
 
     const indicadorDigitando = document.createElement('div');
     indicadorDigitando.className = 'message bot-msg';
-    indicadorDigitando.textContent = 'Digitando...';
+    indicadorDigitando.textContent = 'Analisando o projeto...';
     chatHistory.appendChild(indicadorDigitando);
     chatHistory.scrollTop = chatHistory.scrollHeight;
 
     try {
+        // Uso de FormData para empacotar o arquivo físico e enviar para o n8n
+        const formData = new FormData();
+        formData.append('sessionId', sessionId);
+        
+        if (texto) formData.append('chatInput', texto);
+        if (arquivo) formData.append('file', arquivo); 
+
         const response = await fetch(N8N_WEBHOOK_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                chatInput: texto,
-                sessionId: sessionId
-            })
+            body: formData
         });
 
         if (!response.ok) {
