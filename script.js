@@ -326,7 +326,7 @@ removeFileBtn.addEventListener('click', function() {
     fileUpload.value = '';
     filePreviewContainer.style.display = 'none';
 });
-const botResposta = data.output;
+
 
 //function addMessage(text, sender) {
  //   const msgDiv = document.createElement('div');
@@ -337,14 +337,16 @@ const botResposta = data.output;
  //  chatHistory.scrollTop = chatHistory.scrollHeight;
 //}
 function addMessage(text, sender) {
+
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender === 'user' ? 'user-msg' : 'bot-msg'}`;
 
-    // Converte "\n" literais em quebras de linha reais
-    text = text.replace(/\\n/g, "\n");
+    // Converte "\n" em quebra de linha real
+    text = text
+    .replace(/\\n/g, "\n")
+    .replace(/ {2,}\n/g, "\n");
 
-    // Renderiza Markdown
-    msgDiv.innerHTML = marked.parse(text);
+    msgDiv.textContent = text;
 
     chatHistory.appendChild(msgDiv);
     chatHistory.scrollTop = chatHistory.scrollHeight;
