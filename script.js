@@ -326,7 +326,7 @@ removeFileBtn.addEventListener('click', function() {
     fileUpload.value = '';
     filePreviewContainer.style.display = 'none';
 });
-
+const botResposta = data.output;
 
 //function addMessage(text, sender) {
  //   const msgDiv = document.createElement('div');
@@ -395,30 +395,12 @@ async function enviarMensagem() {
 
         const data = await response.json();
 
-if (chatHistory.contains(indicadorDigitando)) {
-    chatHistory.removeChild(indicadorDigitando);
-}
+        if (chatHistory.contains(indicadorDigitando)) {
+            chatHistory.removeChild(indicadorDigitando);
+        }
 
-    const botResposta = data.output;
-
-    // ===== DEBUG =====
-    console.log("Resposta:");
-    console.log(botResposta);
-
-    console.log("JSON:");
-    console.log(JSON.stringify(botResposta));
-
-    console.log("Caracteres:");
-    for (let i = 0; i < botResposta.length; i++) {
-        if (botResposta[i] === '\n')
-            console.log("Quebra real na posição", i);
-
-        if (botResposta[i] === '\\')
-            console.log("Barra na posição", i);
-    }
-    // =================
-
-    addMessage(botResposta, 'bot');
+        const botResposta = data.output; 
+        addMessage(botResposta, 'bot');
 
     } catch (error) {
         console.error('Erro ao conectar com o n8n:', error);
